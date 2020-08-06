@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #A1ACD9;
 }
 
 .App-logo {
@@ -36,3 +37,138 @@
     transform: rotate(360deg);
   }
 }
+
+
+.home{
+  background-color: #A1ACD9;
+  text-align: center;
+  color: rgb(1, 1, 32);
+}
+
+.home-banner-img{
+  width: 100%;
+}
+
+.get-started{
+  height: 3.5em;
+  width: 5em;
+  border-radius: 20px;
+  font-size: 32px;
+  color: white;
+  background-color: rgb(18, 18, 61);
+}
+
+.get-started:hover{
+  color: white;
+  font-size: 35px;
+}
+
+.top-bar{
+  text-align: center;
+  margin-bottom: 4em;
+  /* padding-top: 3em;
+  padding-bottom: 3em;
+  display: flex;
+  justify-content: space-evenly; */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.clock-holder{
+  display: flex;
+  justify-content: center;
+}
+
+.clock{
+  margin-top: 3em;
+  background-color: seashell;
+  /* background-image: url('./clock-background.png'); */
+  /* background-position: center;
+  height: 100%;
+  background-repeat: no-repeat;
+  background: radial-gradient(rgb(179, 230, 238),rgb(214, 244, 248),rgb(220, 236, 238)  ); */
+  /* background: linear-gradient(90deg, rgba(246,248,249,1) 0%, rgba(232,246,249,1) 35%, rgba(209,241,246,1) 100%); */
+  border-radius: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.expanding-section{
+  margin-bottom: 2em;
+  margin-left: 2em;
+  margin-right: 2em;
+  background-color: #d8e7d1;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.section-title{
+  color:  rgb(18, 18, 61);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 20px;
+  text-align: center;
+  padding: 1em;
+}
+
+
+.page-footer{
+  text-align: center;
+  background-color: rgb(18, 18, 61);
+  color: white;
+}
+
+.footer-logo{
+  height: 70px;
+  margin-bottom: -1em;
+}
+
+.accounts{
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.tab-pane{
+  background-color: white;
+  margin-left: 1px;
+  padding: 1em;
+}
+
+.login-logo{
+  padding-top: 3em;
+  text-align: center;
+}
+
+.start-forms{
+  margin-right: 6em;
+  margin-left: 6em;
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 3em;
+  color: rgb(18, 18, 61);
+  background-color: #d8e7d1;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 20px;
+  border-style: solid;
+  border-width: 4px;
+  border-color: rgb(18, 18, 61);
+}
+
+.login, .create-account{
+  padding: 2em;
+
+}
+
+
+.vertical-line{
+  margin-bottom: 3em;
+  border-left: 4px dotted rgb(18, 18, 61);
+  height: 500px;
+}
+
+.create-account-btn, .login-btn{
+  background-color: rgb(18, 18, 61);
+  color: white;
+}
+
+.create-account-btn:hover, .login-btn:hover{
+  background-color: rgb(18, 18, 61);
+  color: white;
+}
+
