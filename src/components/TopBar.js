@@ -18,17 +18,16 @@ const TopBar = (props) => {
     }
     }, []);
 
-
-    
-
     return (
-        <div className="top-bar">
+        <React.Fragment>
+        <div className="top-bar"> 
             <div className="clock-holder">
             <Clock value={value} className="clock"/>
             </div>
-            <h1>{new Date().toString().substring(0,25)}</h1>
-            <h1>Hi User! </h1>
+            <h3>{new Date().toString().substring(0,25)}</h3>
+            <h2>Hi User! </h2>
         </div>
+        </React.Fragment>
     );
 }
 

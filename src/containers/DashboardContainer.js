@@ -3,14 +3,17 @@ import React from 'react';
 
 import TopBar from '../components/TopBar'
 import AccountsContainer from './AccountsContainer'
+import * as action from '../actionCreators'
+import {connect, useStore} from 'react-redux'
 
 
 const DashboardContainer = (props) => {
 
     return(
         <React.Fragment>
-
+                <button type="button" className="btn logout-btn" onClick={()=> props.setUser(null), ()=>props.history.push('/')}>Logout</button>
                 <TopBar/>
+                <h1>{props.currentUser.name}</h1>
                 <div id="accordion">
                 <div className="expanding-section card">
                     <div className="card-header collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" id="headingOne">
@@ -74,4 +77,19 @@ const DashboardContainer = (props) => {
 
 }
   
-export default DashboardContainer;    
+
+const mapStateToProps=(state)=> {
+    return  {
+    currentUser: state.currentUser
+    }
+} 
+
+const mapDispatchToProps=(dispatch)=>{
+    return {
+    setUser: (user)=>dispatch(action.setUser(user))
+    }
+}
+  
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardContainer);
+
+ 
