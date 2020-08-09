@@ -21,11 +21,11 @@ const TopBar = (props) => {
     return (
         <React.Fragment>
         <div className="top-bar"> 
+            <img src='./plain-logo.png' alt='logo'/>   
             <div className="clock-holder">
             <Clock value={value} className="clock"/>
             </div>
-            <h3>{new Date().toString().substring(0,25)}</h3>
-            <h2>Hi User! </h2>
+            <h3>{new Date().toString().substring(0,25)}</h3>  
         </div>
         </React.Fragment>
     );

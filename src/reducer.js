@@ -9,7 +9,8 @@ const initialState = {
             return {...prevState, currentUser: action.payload.value};
         case 'FETCH_USERS':
             return {...prevState, users: action.payload.value};
-            
+        case 'ADD_ACCOUNT':
+            return {...prevState, currentUser:{...prevState.currentUser, accounts:[...prevState.currentUser.accounts, action.payload.value]}}    
         default:
             return prevState
     }

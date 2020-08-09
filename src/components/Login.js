@@ -33,7 +33,10 @@ class Login extends React.Component {
         if (user){
            if (user.password === this.state.login.password){
                 this.props.setUser(user)
-                this.props.history.push(`/${user.name.replace(/\s+/g, '')}`)  
+                this.props.history.push(`/${user.name.replace(/\s+/g, '')}`)
+                localStorage.user_id = user.id
+                console.log(this.props.currentUser)
+                console.log(localStorage.user_id)  
            } else {
                 alert("Incorrect Password!")
            }     
@@ -75,9 +78,10 @@ class Login extends React.Component {
         .then(r=>r.json())
         .then(newUser=>{
             this.props.setUser(newUser)
-            console.log(newUser)
             this.props.history.push(`/${newUser.name.replace(/\s+/g, '')}`)
-            this.setState({newUser: {name: '', password: '', email: '', dob: ''}}) 
+            this.setState({newUser: {name: '', password: '', email: '', dob: ''}})
+            localStorage.user_id = newUser.id
+            console.log(this.props.currentUser) 
         })
     }
 
