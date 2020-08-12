@@ -6,6 +6,7 @@ class AccountsContainer extends React.Component{
 
 
     state={  
+        user_id: this.props.currentUser.id,
         name: '',
         acct_type: '',
         acct_number: '',
@@ -25,26 +26,6 @@ class AccountsContainer extends React.Component{
             balance: ''   
         })
     }
-
-    // state={
-    //     newAccount: {
-    //         name: '',
-    //         type: '',
-    //         acct_number: '',
-    //         routing_number: '',
-    //         bank: '',
-    //         balance: ''
-    //     },
-        
-    // }
-
-    // handleAccountChange = (e) => {
-    //     this.setState({newAccount: {...this.state.newAccount, [e.target.name]: e.target.value}})
-    // }
-
-    // handleAccountChange = (e) => { 
-    //     this.setState(prevState => ({newAccount: {...prevState.newAccount, [e.target.name]: e.target.value}}))
-    // }
 
     handleAccountChange = (e) => { 
      this.setState({[e.target.name]: e.target.value})
@@ -149,6 +130,24 @@ class AccountsContainer extends React.Component{
         )
 
     }
+
+    bankLogo=(account)=>{
+        if (account.bank === 'Chase©️'){
+            return <img src="./Chase.png" alt="chase-logo" className="bank-logo"/>
+        }
+        else if (account.bank === 'Wells Fargo©️'){
+            return <img src="./WellsFargo.png" alt="wells-fargo-logo" className="bank-logo"/>
+        }
+        else if (account.bank === 'Bank of America©️'){
+            return <img src="./BofA.png" alt="boa-logo" className="bank-logo"/>
+        }
+        else if (account.bank === 'Citibank©️'){
+            return <img src="./Citibank.png" alt="citibank-logo" className="bank-logo"/>
+        }
+        else if (account.bank === 'TD Bank©️'){
+            return <img src="./TD.png" alt="td-logo" className="bank-logo"/>
+        }
+    }
  
     
 
@@ -158,22 +157,57 @@ class AccountsContainer extends React.Component{
             <React.Fragment>
             <button type="button" className="btn green-btn" data-toggle="modal" data-target="#newAccountModal">Sync Additional Account</button>
             {this.newAccountFormModal()}
+
             <div className="accounts">
                 <ul className="nav nav-tabs" id="myTab" role="tablist">
-                <li className="nav-item">
-                    <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Account 1</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Account 2</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Account 3</a>
-                </li>
+                    {this.props.currentUser.accounts.map(account=> {
+                            return(
+                                <li className="nav-item">
+                                    <a href={`#${account.id}`} className="nav-link account-tab-title" id={`${account.id}-${account.user_id}`} data-toggle="tab" role="tab" aria-controls={account.id} aria-selected="false">{this.bankLogo(account)}{account.name}</a>
+                                </li>
+                            ) 
+                        }
+                    )}
                 </ul>
+
                 <div className="tab-content" id="myTabContent">
-                <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledBy="home-tab">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledBy="profile-tab">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                <div className="tab-pane fade" id="contact" role="tabpanel" aria-labelledBy="contact-tab">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                    {this.props.currentUser.accounts.map(account=> {
+                            return(
+                                <div className="tab-pane fade" id={account.id} role="tabpanel" aria-labelledBy={account.id}>
+                                    <div className="account-details">
+                                        <div className="account-detail">
+                                        {this.bankLogo(account)} 
+                                        </div>
+                                        <div className="account-detail account-name">
+                                        {account.name}
+                                        </div>
+                                        <div className="account-detail account-balance">
+                                        BALANCE: ${account.balance}
+                                        </div>  
+                                    </div>
+                                    <h3 className="transactions-title">TRANSACTIONS:</h3>
+                                    <div className="transactions-list">
+                                        
+                                        <div className="transaction-row transaction-headers">
+                                                <div>-----Date:</div>
+                                                <div>Description:</div>
+                                                <div>Amount:</div>
+                                        </div>
+                                        <hr></hr>
+                                    {account.transactions.map(transaction=>{
+                                        return (
+                                        <div className="transaction-row">
+                                            <div>{transaction.date}</div>
+                                            <div>{transaction.description}</div>
+                                            <div>{transaction.amount}</div>
+                                        </div>
+                                        )
+                                    })}
+                                    </div>
+                                </div>
+                            ) 
+                        }
+                    )}
                 </div>
             </div>
             </React.Fragment>

@@ -34,9 +34,7 @@ class Login extends React.Component {
            if (user.password === this.state.login.password){
                 this.props.setUser(user)
                 this.props.history.push(`/${user.name.replace(/\s+/g, '')}`)
-                localStorage.user_id = user.id
-                console.log(this.props.currentUser)
-                console.log(localStorage.user_id)  
+                localStorage.user_id = user.id  
            } else {
                 alert("Incorrect Password!")
            }     

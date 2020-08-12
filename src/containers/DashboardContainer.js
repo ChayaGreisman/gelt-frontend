@@ -1,10 +1,14 @@
 import React from 'react';
-
+import * as action from '../actionCreators'
+import {connect, useStore} from 'react-redux'
 
 import TopBar from '../components/TopBar'
 import AccountsContainer from './AccountsContainer'
-import * as action from '../actionCreators'
-import {connect, useStore} from 'react-redux'
+import BudgetingContainer from './BudgetingContainer';
+import ToolsContainer from './ToolsContainer';
+import Loading from '../components/Loading'
+
+
 
 
 class DashboardContainer extends React.Component {
@@ -13,16 +17,17 @@ class DashboardContainer extends React.Component {
 
     componentDidMount(){
         if (this.props.currentUser){
-            console.log('still signed in, no refresh')
+            console.log('just signed in, no refresh')
         }
         else if (localStorage.user_id) {
             
             fetch('http://localhost:3000/users')
                 .then(r=>r.json())
                 .then(users=>{
-                    console.log(users, localStorage.user_id)
+                    
                     this.props.fetchUsers(users)
-                    let user = users.find(user=> user.id === localStorage.user_id)
+                    let user = this.props.users.find(user=> user.id === parseInt(localStorage.user_id))
+                    this.props.history.push(`/${user.name.replace(/\s+/g, '')}`)
                     this.props.setUser(user)
                 })
             
@@ -40,10 +45,14 @@ class DashboardContainer extends React.Component {
 
     render(){
         return(
+
+            
             <React.Fragment>
+                {this.props.currentUser ?
+                    <div>
                     <button type="button" className="btn logout-btn" onClick={this.logout}>Logout</button>
                     <TopBar/>
-                    <h1 className="user-name">{this.props.currentUser.name}</h1>
+                    <h1 className="user-name">· {this.props.currentUser.name} ·</h1>
                     <div id="accordion">
                     <div className="expanding-section card">
                         <div className="card-header collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" id="headingOne">
@@ -66,7 +75,7 @@ class DashboardContainer extends React.Component {
                         </div>
                         <div id="collapseTwo" className="collapse" aria-labelledBy="headingTwo" data-parent="#accordion">
                         <div className="card-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            <BudgetingContainer/>
                         </div>
                         </div>
                     </div>
@@ -90,6 +99,7 @@ class DashboardContainer extends React.Component {
                         </div>
                         <div id="collapseFour" className="collapse" aria-labelledBy="headingFour" data-parent="#accordion">
                         <div className="card-body">
+                            <ToolsContainer/>
                             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                         </div>
                         </div>
@@ -97,13 +107,15 @@ class DashboardContainer extends React.Component {
                     </div>
                     
                     <div className="page-footer">
-                        <img className="piggy" src='./piggy.gif' alt="piggy-gif"/>
+                        <img  src='./piggy.gif' alt="piggy-gif"/><br></br>
                         <img className="footer-logo" src='./plain-logo.png' alt="logo"/>
                         <div className="footer-copyright text-center py-3" onClick={()=>{window.open('http://chayagreisman.com/','_blank')}}>
                             Copyright © {new Date().toISOString().substring(0, 4)} | Chaya M. Greisman
                         </div>   
                     </div>
-            </React.Fragment>
+                    </div>
+                    : <Loading/>}
+            </React.Fragment> 
         )
     }
 
