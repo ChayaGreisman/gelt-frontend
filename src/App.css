@@ -386,6 +386,7 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
   width: 500px;
   background-color: white;
   border-radius: 10px;
+  margin-top: 1.5em;
   margin-right: 1em;
   margin-left: 1em;
   /* border: solid 2px rgb(18, 18, 61); */
@@ -426,4 +427,71 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
   color: rgb(18, 18, 61);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
+}
+
+.spinner-grow{
+  margin: .5em;
+}
+
+.calendar-budget-box{
+  margin-top: 1.5em;
+  margin-left: 10.7em;
+  margin-right: 10.7em;
+  border-radius: 10px;
+  padding: 2em;
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.calendar-budget-box div h1, h2, h3, h4, h5{
+  text-align: center;
+  color: rgb(18, 18, 61);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.spiral{
+  margin-top: 1em;
+  width: 100%;
+}
+
+.chosen-date-box{
+  padding-top: 2em;
+  background-color: #D4D5DB;
+  border-right: #c3c6d6 4px double;
+  border-bottom: #c3c6d6 4px double;
+  min-height: 300px;
+  min-width: 360px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+}
+
+.chosen-date-box h2{
+  background-color: #92e06e;
+  
+}
+
+.add-transaction-btn{
+  text-align: center;
+}
+.add-transaction-btn button{
+  border-radius: 10px;
+  color: white;
+  background-color: rgb(18, 18, 61);
+}
+
+.add-transaction-btn button:hover{
+  border-radius: 10px;
+  color: rgb(18, 18, 61);
+  background-color: #c7dbbd;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+}
+
+.transactions-for-account{
+  height: 100px;
+  width: 1175px;
+  padding-right: 10px;
+}
+
+.soccer-banner-img{
+  width: 100%;
 }

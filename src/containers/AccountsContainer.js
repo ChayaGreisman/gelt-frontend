@@ -194,15 +194,18 @@ class AccountsContainer extends React.Component{
                                                 <div>Amount:</div>
                                         </div>
                                         <hr></hr>
-                                    {account.transactions.map(transaction=>{
-                                        return (
-                                        <div className="transaction-row">
-                                            <div>{transaction.date}</div>
-                                            <div>{transaction.description}</div>
-                                            <div>{transaction.amount}</div>
+
+                                        <div className="overflow-auto transactions-for-account">
+                                            {account.transactions.map(transaction=>{
+                                                return (
+                                                <div className="transaction-row">
+                                                    <div>{transaction.date}</div>
+                                                    <div>{transaction.description}</div>
+                                                    <div>{transaction.amount}</div>
+                                                </div>
+                                                )
+                                            })}
                                         </div>
-                                        )
-                                    })}
                                     </div>
                                 </div>
                             ) 

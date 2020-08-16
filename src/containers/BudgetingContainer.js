@@ -1,11 +1,10 @@
 import React from 'react';
 import * as action from '../actionCreators'
 import {connect, useStore} from 'react-redux'
-
 import { Doughnut, Bar } from 'react-chartjs-2';
 
-   
-// let randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+import CalendarBudget from '../components/CalendarBudget';
+
 
 class BudgetingContainer extends React.Component{
 
@@ -17,6 +16,7 @@ class BudgetingContainer extends React.Component{
 
         editCategoryId: '',
         editBudget: '',
+
     }
 
     resetState = () => {
@@ -134,7 +134,7 @@ class BudgetingContainer extends React.Component{
                 <div className="modal-footer">
                     <button type="button" className="btn cancel-btn" data-dismiss="modal" onClick={this.resetState}>Cancel</button>
                     <button type="button" className="btn delete-btn" data-dismiss="modal" onClick={this.deleteCategory}>Delete Category</button>
-                    <button type="button" className="btn green-btn" data-dismiss="modal" onClick={this.newCategory}>Save Changes</button>
+                    <button type="button" className="btn green-btn" data-dismiss="modal" onClick={this.editCategory}>Save Changes</button>
                 </div>
                 </div>
             </div>
@@ -160,21 +160,36 @@ class BudgetingContainer extends React.Component{
         
     }
 
-    newCategory = () => {
-        this.resetState()
+    editCategory = () => {
+        fetch(`http://localhost:3000/categories/${this.state.editCategoryId}`, {
+            method: "PATCH",
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                budgeted_amount: parseFloat(this.state.editBudget)
+            })
+        })
+        .then(r=>r.json())
+        .then((editedCategory) => {
+            this.props.handleEditedCategory(editedCategory)
+            console.log('editedCtegory:', editedCategory,  'with edited:', this.props.currentUser.categories)
+            this.resetState()
+        })
     }
 
 
     categorySpendingTotal = (category) => {
-     
         let currentMonth = new Date().toISOString().substring(0,7)
         let currentMonthTransactions = category.transactions.filter(transaction => transaction.date.includes(currentMonth))
         let total = 0
         currentMonthTransactions.forEach(transaction=>
             total += transaction.amount
         )
-        return Math.abs(total)
-      
+        // let roundedTwoDecimalDigits = total.toFixed(2)
+        let roundedTwoDecimalDigits = Math.round(total * 100) / 100
+        return Math.abs(roundedTwoDecimalDigits)
     }
 
     handleEditButtonClick = (e) => {
@@ -263,9 +278,8 @@ class BudgetingContainer extends React.Component{
                 <div className="budget-squares">
                     <div className="category-list">
                         <h3> My Monthly Budget  </h3>
-                        {this.props.currentUser.categories.map(category=>{
-                            
-                            return  <div className="category-row">
+                        {this.props.currentUser.categories.map(category=>{  
+                            return  <div className="category-row" key={category.id}>
                                         <div><strong><span className="btn edit-category-btn" id={category.id} data-toggle="modal" data-target="#editCategoryModal" onClick={this.handleEditButtonClick}>✎</span>{category.name}</strong></div>
                                         <div><span className="category-amount">${category.budgeted_amount}</span></div>
                                     </div>
@@ -285,16 +299,12 @@ class BudgetingContainer extends React.Component{
                     </div>
 
                     <div className="bar-chart-box">
-                    <h4> {new Date().toString().substring(4,7)} {new Date().toString().substring(11,15)} </h4>
-                    <h3>  Budgeted vs Actual Spending  </h3>
-                        
-                            <Bar
-                                data={barData}
-                                options={options}
-                            />
-                        
-                    </div>
+                        <h4> Current Month: {new Date().toString().substring(4,7)} {new Date().toString().substring(11,15)} </h4>
+                        <h3>  Budgeted vs Actual Spending  </h3>
+                        <Bar data={barData} options={options}/>  
+                    </div>    
                 </div>
+                <CalendarBudget/>
             </React.Fragment>
         )
     }
@@ -312,6 +322,7 @@ const mapDispatchToProps=(dispatch)=>{
     handleNewAccount: (newAccount)=>dispatch(action.handleNewAccount(newAccount)), 
     handleNewCategory: (newCategory)=>dispatch(action.handleNewCategory(newCategory)), 
     handleDeleteCategory: (categoryId)=>dispatch(action.handleDeleteCategory(categoryId)), 
+    handleEditedCategory: (editedCategory)=>dispatch(action.handleEditedCategory(editedCategory)),
     setUser: (user)=>dispatch(action.setUser(user))
     }
 }  

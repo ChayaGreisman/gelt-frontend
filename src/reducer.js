@@ -17,9 +17,36 @@ const initialState = {
             let categoryId = action.payload.value
             let categoriesArray = [...prevState.currentUser.categories.filter(category => category.id !== categoryId)]    
             return {...prevState, currentUser:{...prevState.currentUser, categories: categoriesArray}}
+        case 'EDIT_CATEGORY':
+            let editedCategory = action.payload.value
+            let newCategoriesArray = [...prevState.currentUser.categories.map(category => {
+                if (category.id === editedCategory.id){
+                    return editedCategory
+                }
+                return category
+            })] 
+            
+            return {...prevState, currentUser:{...prevState.currentUser, categories: newCategoriesArray}}
 
+        case 'ADD_TRANSACTION':
+            let newTransaction = action.payload.value
+            
+            let categoriesArrayNew = [...prevState.currentUser.categories.map(category => {
+                if (category.id === newTransaction.category_id){
+                    return {...category, transactions: [...category.transactions, newTransaction]}    
+                }
+                return category
+            })] 
 
+            let accountsArrayNew = [...prevState.currentUser.accounts.map(account => {
+                if (account.id === newTransaction.account_id){
+                    return {...account, transactions: [...account.transactions, newTransaction]}    
+                }
+                return account
+            })] 
 
+            return {...prevState, currentUser:{...prevState.currentUser, categories: categoriesArrayNew, accounts: accountsArrayNew}}
+        
         default:
             return prevState
     }
