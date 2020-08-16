@@ -157,7 +157,6 @@ class AccountsContainer extends React.Component{
             <React.Fragment>
             <button type="button" className="btn green-btn" data-toggle="modal" data-target="#newAccountModal">Sync Additional Account</button>
             {this.newAccountFormModal()}
-
             <div className="accounts">
                 <ul className="nav nav-tabs" id="myTab" role="tablist">
                     {this.props.currentUser.accounts.map(account=> {
@@ -169,7 +168,6 @@ class AccountsContainer extends React.Component{
                         }
                     )}
                 </ul>
-
                 <div className="tab-content" id="myTabContent">
                     {this.props.currentUser.accounts.map(account=> {
                             return(
@@ -187,16 +185,14 @@ class AccountsContainer extends React.Component{
                                     </div>
                                     <h3 className="transactions-title">TRANSACTIONS:</h3>
                                     <div className="transactions-list">
-                                        
                                         <div className="transaction-row transaction-headers">
                                                 <div>-----Date:</div>
                                                 <div>Description:</div>
                                                 <div>Amount:</div>
                                         </div>
                                         <hr></hr>
-
                                         <div className="overflow-auto transactions-for-account">
-                                            {account.transactions.map(transaction=>{
+                                            {account.transactions.sort((a,b)=> a.date < b.date ? 1 : -1).map(transaction=>{
                                                 return (
                                                 <div className="transaction-row">
                                                     <div>{transaction.date}</div>
@@ -232,6 +228,3 @@ const mapDispatchToProps=(dispatch)=>{
 }  
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountsContainer);
-
-
-  
