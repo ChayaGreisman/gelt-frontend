@@ -47,6 +47,9 @@ const initialState = {
 
             return {...prevState, currentUser:{...prevState.currentUser, categories: categoriesArrayNew, accounts: accountsArrayNew}}
         
+        case 'ADD_SAVED_CARD':
+            return {...prevState, currentUser:{...prevState.currentUser, cards:[...prevState.currentUser.cards, action.payload.value]}} 
+
         default:
             return prevState
     }

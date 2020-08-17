@@ -5,6 +5,7 @@ let handleNewCategory = (newCategory) => ({type: 'ADD_CATEGORY', payload:{value:
 let handleDeleteCategory = (categoryId) => ({type: 'DELETE_CATEGORY', payload:{value: categoryId}})
 let handleEditedCategory = (editedCategory) => ({type: 'EDIT_CATEGORY', payload:{value: editedCategory}})
 let handleNewTransaction = (newTransaction) => ({type: 'ADD_TRANSACTION', payload:{value: newTransaction}})
+let handleNewSavedCard = (newSavedCard) => ({type: 'ADD_SAVED_CARD', payload:{value: newSavedCard}})
 
 export {
     fetchUsers,
@@ -13,5 +14,6 @@ export {
     handleNewCategory,
     handleDeleteCategory,
     handleEditedCategory,
-    handleNewTransaction
+    handleNewTransaction,
+    handleNewSavedCard
 }

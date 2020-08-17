@@ -204,7 +204,7 @@ class BudgetingContainer extends React.Component{
 
     render(){
 
-        let colors = ['rgb(161, 172, 217)', 'rgb(126, 217, 87)', 'rgb(92, 177, 56)', 'rgb(159, 223, 132)', 'rgb(50, 129, 16)', 'rgb(176, 182, 207)', 'rgb(62, 45, 94)', 'rgb(161, 133, 212)']
+        let colors = ['rgb(23, 80, 26)', '#b9bccc', 'rgb(161, 172, 217)', 'rgb(126, 217, 87)', 'rgb(92, 177, 56)', 'rgb(159, 223, 132)', 'rgb(50, 129, 16)', 'rgb(176, 182, 207)', 'rgb(62, 45, 94)', 'rgb(161, 133, 212)']
 
         let data = {
             labels: [],

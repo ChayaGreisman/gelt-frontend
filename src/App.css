@@ -63,6 +63,12 @@
   font-size: 35px;
 }
 
+.app-description{
+  margin-top: -2em;
+  margin-bottom: 4em;
+}
+
+
 .logout-btn{
   margin-left: 2em;
   margin-top: 2em;
@@ -495,12 +501,20 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
 
 .cc-card{
   text-align: center;
-  width: 300px;
-  height: 350px;
+  width: 375px;
+  height: 400px;
   margin: 1em;
-  padding: 1em;
-  background-color: #D4D5DB;
+  padding-bottom: 1em;
+  padding-right: 1em;
+  padding-left: 1em;
+  background-color: #b9bccc;
   border-radius: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.bookmark{
+  text-align: left;
+  margin-top: -.1em;
 }
 
 .cc-cards-container{
@@ -515,13 +529,14 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
 
 .cc-image{
   margin-top: 1em;
+  margin-bottom: 1em;
   width: 15em;
 }
 
 .card-description{
   margin-top: 1em;
   margin-bottom: 1em;
-  width: 250px;
+  width: 300px;
   height: 50px;
 }
 
@@ -529,7 +544,153 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubun
   text-decoration: underline;
 }
 
+.annual-fee{
+  color: rgb(23, 80, 26);
+}
+
 .apply-icon{
   margin-left: .5em;
 }
+
+.bi-arrow-right-circle-fill, .bi-arrow-left-circle-fill{
+  color: rgb(18, 18, 61);
+  width: 3.5em;
+  height: 3.5em;
+
+  margin-top: 12.5em;
+  margin-left: 3em;
+  margin-right: 3em;
+}
+
+.bi-star-fill{
+  margin-top: -.3em;
+  margin-left: .3em;
+  color: goldenrod;
+}
+
+.no-cards{
+  padding-top: 150px;
+  padding-bottom: 150px;
+  margin-right: 50px;
+  margin-left: 50px;
+  background-color: #b9bccc;
+  border-radius: 10px;
+}
+
+.cc-display-options{
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
+  margin-bottom: 1em;
+  font-size: 17px;
+}
+
+.cc-display-options>*{
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin-right: 1em;
+  margin-left: 1em;
+}
+
+.check-annualFee{
+  margin-right: .5em;
+}
+
+.choose-account-type, .choose-credit-level{
+  margin-left: .5em;
+  background-color: #a9aeca;
+  border-radius: 5px;
+}
+
+.cc-display-options .bi-bookmark-fill{
+  margin-left: .5em;
+}
+
+.bi-bookmark-fill, .bi-bookmark{
+  color: rgb(33, 114, 37);
+}
+
+.bookmarked-option{
+  margin-top: 2em;
+  text-align: center;
+}
+
+.bookmarked-btn{
+  border: solid 2px rgb(33, 114, 37);
+}
+
+.bookmarked-btn:hover{
+  border: solid 2px rgb(14, 75, 17);
+  background-color: rgb(244, 248, 242);
+}
+
+.tools{
+  display: flex;
+  justify-content: space-around;
+}
+
+div.calculator-display{
+  background-color: rgb(18, 18, 61);
+}
+
+button.calculator-key.key-multiply, button.calculator-key.key-divide, button.calculator-key.key-subtract, button.calculator-key.key-add, button.calculator-key.key-equals{
+  background-color: #A1ACD9;
+}
+
+.calculator{
+  margin-bottom: 2em;
+  margin-top: 2em;
+}
+
+.notebook{
+  width: 500px;
+}
+
+.notebook-title{
+  color: rgb(212, 238, 197);
+  margin: 0;
+  background-color: rgba(23, 80, 26, 0.712);
+}
+.notebook-text{
+  padding: 1em;
+  background-color: rgb(235, 229, 222);
+  border-right: rgb(218, 212, 157) 4px double;
+  border-bottom: rgb(218, 212, 157) 4px double;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+
+}
+
+.notebook-notes{
+  width: 480px;
+  height: 450px;
+}
+
+.calculator-background{
+  padding: 1em;
+  background-color: #7b89c0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+}
+
+.bookmarked-cards-gallery{
+  margin-top: 4em;
+  margin-bottom: 4em;
+  margin-right: 10em;
+  margin-left: 10em;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.bookmarked-cards-gallery-img{
+  margin-top: 2em;
+  margin-left: -2em;
+  width: 150px;
+  transform: rotate(-5deg);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+}
+
+.bookmarked-cards-gallery-img:hover{
+  margin-top: 0;
+}
+
 

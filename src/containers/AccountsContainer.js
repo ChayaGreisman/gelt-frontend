@@ -41,7 +41,6 @@ class AccountsContainer extends React.Component{
     }
 
     handleClickSubmitAccount = () => {
-        console.log('hit fetch')
             fetch('http://localhost:3000/accounts', {
                 method: "POST",
                 headers: {
