@@ -19,14 +19,20 @@ class CreditCardsContainer extends React.Component {
         this.setState({showSavedCards: !this.state.showSavedCards})
     }
 
+    getSavedCards = () => {
+        fetch('http://localhost:3000/saved_cards')
+        .then(r=>r.json())
+        .then(savedCards=>this.setState({savedCards}))
+    }
+
     componentDidMount(){
+
         fetch('http://localhost:3000/cards')
         .then(r=>r.json())
         .then(cards=>this.setState({cards}))
 
-        fetch('http://localhost:3000/saved_cards')
-        .then(r=>r.json())
-        .then(savedCards=>this.setState({savedCards}))
+        this.getSavedCards()
+
     }
 
     nextThree = () => {
@@ -87,13 +93,27 @@ class CreditCardsContainer extends React.Component {
 
     handleBookmarkClick = (e) => {
 
-        // alert(`ID OF CARD: ${e.target.id} EVENT TARGET: ${e.target}`)
-        // console.log(`ID OF CARD: ${e.target.id} EVENT TARGET: ${e.target}`)
-       
+        let cardId = parseInt(e.target.id)
+
         if(this.includesCard(parseInt(e.target.id))===true){
-            alert(`need to delete saved card and remove from user card array, ID: ${e.target.id}`)
-        } else {
+
+            let savedCard = this.state.savedCards.find(saved=> saved.user_id === this.props.currentUser.id && saved.card_id === parseInt(e.target.id))
+           
+            fetch(`http://localhost:3000/saved_cards/${savedCard.id}`, {
+                method: "DELETE",
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(r=>r.json())
+            .then(() => {
+                this.props.handleDeleteSavedCard(cardId)
+                this.getSavedCards()
+            })
             
+        } else {
+
             fetch('http://localhost:3000/saved_cards', {
                 method: "POST",
                 headers: {
@@ -102,15 +122,15 @@ class CreditCardsContainer extends React.Component {
                 },
                 body: JSON.stringify({
                     user_id: this.props.currentUser.id,
-                    card_id: e.target.id
+                    card_id: parseInt(e.target.id)
                 })
             })
             .then(r=>r.json())
             .then(newSavedCard=>{
                 this.props.handleNewSavedCard(newSavedCard.card)
+                this.getSavedCards()
             })
         }
-
     }
 
     userSavedCard = (card) =>{
@@ -269,6 +289,7 @@ class CreditCardsContainer extends React.Component {
     const mapDispatchToProps=(dispatch)=>{
         return {
         handleNewSavedCard: (newSavedCard)=>dispatch(action.handleNewSavedCard(newSavedCard)),
+        handleDeleteSavedCard: (cardId)=>dispatch(action.handleDeleteSavedCard(cardId))
         }
     }
       

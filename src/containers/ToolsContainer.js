@@ -12,12 +12,11 @@ class ToolsContainer extends React.Component{
         return(
             <React.Fragment>
                 <div className="tools">
-                <div className="calculator-background">
-                    <Calculator/> 
-                </div>
-                
-                <Notebook/>
-                
+                    <img src="./calculator-image.png" alt="calculator"/>
+                    {/* <div className="calculator-background">
+                        <Calculator/> 
+                    </div>                */}
+                    <Notebook/>               
                 </div>
             </React.Fragment>
         )

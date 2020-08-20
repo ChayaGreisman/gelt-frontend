@@ -49,7 +49,17 @@ const initialState = {
         
         case 'ADD_SAVED_CARD':
             return {...prevState, currentUser:{...prevState.currentUser, cards:[...prevState.currentUser.cards, action.payload.value]}} 
-
+        case 'DELETE_SAVED_CARD':
+            let cardId = action.payload.value
+            let cardsArray = [...prevState.currentUser.cards.filter(card => card.id !== cardId)]    
+            return {...prevState, currentUser:{...prevState.currentUser, cards: cardsArray}}
+        case 'ADD_NOTE':
+            return {...prevState, currentUser:{...prevState.currentUser, notes:[...prevState.currentUser.notes, action.payload.value]}} 
+        case 'DELETE_NOTE':
+            let noteId = action.payload.value
+            let notesArray = [...prevState.currentUser.notes.filter(note => note.id !== noteId)]    
+            return {...prevState, currentUser:{...prevState.currentUser, notes: notesArray}}
+        
         default:
             return prevState
     }

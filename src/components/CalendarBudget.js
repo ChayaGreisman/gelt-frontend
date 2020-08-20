@@ -5,8 +5,6 @@ import {connect, useStore} from 'react-redux'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
 
-
-
 class CalendarBudget extends React.Component{
 
     state = {
@@ -17,7 +15,6 @@ class CalendarBudget extends React.Component{
         amount: '',
         categoryId: this.props.currentUser.categories[0].id,
         accountId: this.props.currentUser.accounts[0].id
-
     }
 
     resetNewTransactionForm = () => {
@@ -60,7 +57,7 @@ class CalendarBudget extends React.Component{
                 </div>
                 <div className="form-group">
                     <label>Amount</label>
-                    <input onChange={this.handleTransactionChange}  name="amount" value={this.state.amount} type="number" min="0.00" step="0.01" className="form-control" placeholder="00.00"/>
+                    <input onChange={this.handleTransactionChange}  name="amount" value={this.state.amount} type="number" min="00.00" step="0.01" className="form-control" placeholder="00.00"/>
                 </div>
                 <div className="form-group">
                     <label>Category:</label>
@@ -104,8 +101,6 @@ class CalendarBudget extends React.Component{
     }
 
     createTransaction = () => {
-    
-
         fetch('http://localhost:3000/transactions', {
             method: "POST",
             headers: {
@@ -125,10 +120,7 @@ class CalendarBudget extends React.Component{
             this.props.handleNewTransaction(newTransaction)
             this.resetNewTransactionForm()
         })
-
-
     }
-
 
     render(){
         console.log('TEST:',this.state)
@@ -145,7 +137,7 @@ class CalendarBudget extends React.Component{
                     <div className="chosen-date-box">
                         <h2>{this.state.dateSelected}</h2>
                             {this.transactionsByDate().length !== 0
-                            ? this.transactionsByDate().map(transaction=><h5>{transaction.description}  {transaction.amount}</h5>)
+                            ? this.transactionsByDate().map(transaction=><div className="date-transaction-row"><div><span className="paper-clip">📎</span> {transaction.description}</div><div>{transaction.amount}</div></div>)
                             : <div><h5>* No Recorded Spending for {this.state.dateSelected} *</h5><br></br><br></br></div>}
                         <br></br>    
                         <div className="add-transaction-btn">
@@ -158,9 +150,7 @@ class CalendarBudget extends React.Component{
         )
     }
 
-
 }
-
 
 const mapStateToProps=(state)=> {
     return  {  
