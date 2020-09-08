@@ -61,16 +61,16 @@ class Notebook extends React.Component {
 
     noteStyle = (note) => {
         if (note.importance === 'Low'){
-            return <p style={{color: `${note.color}`, backgroundColor: `${note.highlight}`}}><span id={note.id} onClick={this.deleteNote} style={{marginRight: '.5em', backgroundColor: '#FAF5EB'}}>🗑</span>{note.text}</p>
+            return <p style={{color: `${note.color}`, backgroundColor: `${note.highlight}`}}><img src="./greentrash.png" id={note.id} onClick={this.deleteNote} style={{marginRight: '.5em', backgroundColor: '#FAF5EB', width: '20px'}} alt="trash"/>{note.text}</p>
         } 
         else if (note.importance === 'Medium'){
-            return <p style={{color: `${note.color}`, backgroundColor: `${note.highlight}`}}><span id={note.id} onClick={this.deleteNote} style={{marginRight: '.5em', backgroundColor: '#FAF5EB'}}>🗑</span><strong>{note.text}</strong></p>
+            return <p style={{color: `${note.color}`, backgroundColor: `${note.highlight}`}}><img src="./greentrash.png" id={note.id} onClick={this.deleteNote} style={{marginRight: '.5em', backgroundColor: '#FAF5EB', width: '20px'}} alt="trash"/><strong>{note.text}</strong></p>
         }
         else if (note.importance === 'High'){
-            return <p style={{color: `${note.color}`, backgroundColor: `${note.highlight}`}}><span id={note.id} onClick={this.deleteNote} style={{marginRight: '.5em', backgroundColor: '#FAF5EB'}}>🗑</span><strong style={{textDecoration: 'underline'}}>{note.text}</strong></p>
+            return <p style={{color: `${note.color}`, backgroundColor: `${note.highlight}`}}><img src="./greentrash.png" id={note.id} onClick={this.deleteNote} style={{marginRight: '.5em', backgroundColor: '#FAF5EB', width: '20px'}} alt="trash"/><strong style={{textDecoration: 'underline'}}>{note.text}</strong></p>
         }
         else if (note.importance === 'Extremely High'){
-            return <p style={{color: `${note.color}`, backgroundColor: `${note.highlight}`}}><span id={note.id} onClick={this.deleteNote} style={{marginRight: '.5em', backgroundColor: '#FAF5EB'}}>🗑</span><strong style={{textDecorationLine: 'underline', textDecorationStyle: 'double', textDecorationColor: 'red'}}>{note.text}</strong></p>
+            return <p style={{color: `${note.color}`, backgroundColor: `${note.highlight}`}}><img src="./greentrash.png" id={note.id} onClick={this.deleteNote} style={{marginRight: '.5em', backgroundColor: '#FAF5EB', width: '20px'}} alt="trash"/><strong style={{textDecorationLine: 'underline', textDecorationStyle: 'double', textDecorationColor: 'red'}}>{note.text}</strong></p>
         }
     }
 
