@@ -22,8 +22,10 @@ const TopBar = (props) => {
         <React.Fragment>
         <div className="top-bar"> 
             <img src='./plain-logo.png' alt='logo'/>   
-            <div className="clock-holder">
+            <div className="clock-holder" >
+            
             <Clock value={value} className="clock"/>
+            
             </div>
             <h3>{new Date().toString().substring(0,25)}</h3>  
         </div>

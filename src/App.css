@@ -99,12 +99,13 @@ background-color: rgb(61, 61, 109);
 
 .clock{
   /* background-color: seashell; */
-  /* background-image: url('./clockbackground.png'); */
+  /* background-image: url('./clock-background.png'); */
   /* background-position: center; */
   /* height: 100%; */
   /* background-repeat: no-repeat; */
-  background: radial-gradient(rgb(196, 235, 241),rgb(214, 244, 248),rgb(220, 236, 238)  );
   /* background: linear-gradient(90deg, rgba(246,248,249,1) 0%, rgba(232,246,249,1) 35%, rgba(209,241,246,1) 100%); */
+  
+  background: radial-gradient(rgb(196, 235, 241),rgb(214, 244, 248),rgb(220, 236, 238)  );
   border-radius: 50%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
