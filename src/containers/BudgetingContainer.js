@@ -174,7 +174,7 @@ class BudgetingContainer extends React.Component{
         .then(r=>r.json())
         .then((editedCategory) => {
             this.props.handleEditedCategory(editedCategory)
-            console.log('editedCtegory:', editedCategory,  'with edited:', this.props.currentUser.categories)
+            // console.log('editedCategory:', editedCategory,  'with edited:', this.props.currentUser.categories)
             this.resetState()
         })
     }
